@@ -87,8 +87,27 @@ return {
       dracula.setup({
         transparent_bg = true,
         italic_comment = true,
-        lualine_bg_color = "191724",
-        overrides = {}
+        overrides = {
+          StatusLine = {
+            fg = "#F8F8F2",
+            bg = "NONE",
+          },
+          StatusLineTerm = {
+            fg = "#F8F8F2",
+            bg = "NONE",
+          },
+          Terminal = {
+            fg = "#F8F8F2",
+            bg = "NONE",
+          },
+          WildMenu = {
+            fg = "#F8F8F2",
+            bg = "NONE",
+          },
+          TelescopeNormal = {
+            bg = "NONE",
+          },
+        }
       })
     end
   }
