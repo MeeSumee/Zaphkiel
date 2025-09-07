@@ -90,22 +90,24 @@ return {
         italic_comment = true,
         overrides = {
           StatusLine = {
-            fg = "#F8F8F2",
             bg = "NONE",
           },
           StatusLineTerm = {
-            fg = "#F8F8F2",
             bg = "NONE",
           },
           Terminal = {
-            fg = "#F8F8F2",
             bg = "NONE",
           },
           WildMenu = {
-            fg = "#F8F8F2",
             bg = "NONE",
           },
           TelescopeNormal = {
+            bg = "NONE",
+          },
+          BufferLineFill = {
+            bg = "NONE",
+          },
+          BufferTabpageFill = {
             bg = "NONE",
           },
         }
