@@ -85,13 +85,9 @@ return {
     after = function()
       local dracula = require("dracula")
       dracula.setup({
-
-        colors = {
-          bg = "#191724",
-        },
-
         transparent_bg = true,
         italic_comment = true,
+        lualine_bg_color = "191724",
         overrides = {}
       })
     end
