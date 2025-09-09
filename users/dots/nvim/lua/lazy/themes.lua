@@ -91,8 +91,12 @@ return {
         },
 
         transparent_bg = true,
+        lualine_bg_color = "None",
         italic_comment = true,
         overrides = {
+          CursorLine = {
+            bg = "NONE",
+          },
           StatusLine = {
             bg = "NONE",
           },
@@ -100,6 +104,9 @@ return {
             bg = "NONE",
           },
           Terminal = {
+            bg = "NONE",
+          },
+          BlinkCmpScrollBarGutter = {
             bg = "NONE",
           },
           BufferLineFill = {
@@ -124,6 +131,9 @@ return {
             bg = "NONE",
           },
           BufferInactiveTarget = {
+            bg = "NONE",
+          },
+          MiniFilesCursorLine = {
             bg = "NONE",
           },
           MiniStatuslineDevinfo = {
