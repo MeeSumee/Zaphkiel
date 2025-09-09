@@ -82,19 +82,9 @@ return {
   }, {
     "dracula.nvim",
     colorscheme = { "dracula", "dracula-soft" },
-    config = function()
-      local auto = require "lualine.themes.auto"
-      local lualine_modes = { "insert", "normal", "visual", "command", "replace", "inactive", "terminal" }
-      for _, field in ipairs(lualine_modes) do
-          if auto[field] and auto[field].c then
-              auto[field].c.bg = "NONE"
-          end
-      end
-      opts.options.theme = auto
-      require("lualine").setup(opts)
-    end,
     after = function()
       local dracula = require("dracula")
+      local lualine = require("lualine")
       dracula.setup({
 
         colors = {
@@ -124,6 +114,18 @@ return {
             bg = "NONE",
           },
         }
+      })
+
+      lualine.setup({
+        normal = {
+          c = { fg = colors.white, bg = "NONE" },
+        },
+        replace = {
+          c = { fg = colors.white, bg = "NONE" }
+        },
+        insert = {
+          c = { fg = colors.white, bg = "NONE" }
+        },
       })
     end
   }
