@@ -87,63 +87,63 @@ return {
       dracula.setup({
 
         transparent_bg = true,
-        lualine_bg_color = "None",
+        lualine_bg_color = nil,
         italic_comment = true,
 
         overrides = {
           BlinkCmpScrollBarGutter = {
-            bg = "None",
+            bg = nil,
           },
           BufferLineFill = {
-            bg = "None",
+            bg = nil,
           },
           BufferLineBufferSelected = {
-            bg = "None",
+            bg = nil,
           },
           BufferTabpages = {
-            bg = "None",
+            bg = nil,
           },
           BufferTabpageFill = {
-            bg = "None",
+            bg = nil,
           },
           BufferInactive = {
-            bg = "None",
+            bg = nil,
           },
           BufferInactiveIndex = {
-            bg = "None",
+            bg = nil,
           },
           BufferInactiveMod = {
-            bg = "None",
+            bg = nil,
           },
           BufferInactiveSign = {
-            bg = "None",
+            bg = nil,
           },
           BufferInactiveTarget = {
-            bg = "None",
+            bg = nil,
           },
           MiniStatuslineDevinfo = {
-            bg = "None"
+            bg = nil
           },
           MiniStatuslineFilename = {
-            bg = "None"
+            bg = nil
           },
           MiniStatuslineFileinfo = {
-            bg = "None"
+            bg = nil
           },
           StatusLine = {
-            bg = "None",
+            bg = nil,
           },
           StatusLineTerm = {
-            bg = "None",
+            bg = nil,
           },
           TabLineFill = {
-            bg = "None",
+            bg = nil,
           },
           TelescopeNormal = {
-            bg = "None",
+            bg = nil,
           },
           Terminal = {
-            bg = "None",
+            bg = nil,
           },
         }
       })
