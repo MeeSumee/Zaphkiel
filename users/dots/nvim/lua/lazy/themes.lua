@@ -128,6 +128,15 @@ return {
           BufferInactiveTarget = {
             bg = "NONE",
           },
+          MiniStatuslineDevinfo = {
+            bg = "NONE"
+          },
+          MiniStatuslineFilename = {
+            bg = "NONE"
+          },
+          MiniStatuslineFileinfo = {
+            bg = "NONE"
+          },
         }
       })
     end
