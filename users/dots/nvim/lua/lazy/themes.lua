@@ -85,6 +85,11 @@ return {
     after = function()
       local dracula = require("dracula")
       dracula.setup({
+
+        colors = {
+          bg = "NONE",
+        },
+
         transparent_bg = true,
         lualine_bg_color = "#CC191724",
         italic_comment = true,
@@ -99,9 +104,6 @@ return {
             bg = "NONE",
           },
           WildMenu = {
-            bg = "NONE",
-          },
-          TelescopeNormal = {
             bg = "NONE",
           },
           BufferLineFill = {
