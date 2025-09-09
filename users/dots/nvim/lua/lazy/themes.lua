@@ -84,7 +84,7 @@ return {
     colorscheme = { "dracula", "dracula-soft" },
     after = function()
       local dracula = require("dracula")
-      local transparent_lualine = require("lualine.themes.dracula" or "lualine.themes.dracula-soft")
+      local transparent_lualine = require("lualine.themes.dracula-nvim" or "lualine.themes.dracula-soft")
       transparent_lualine.normal.c.bg = "NONE"
       transparent_lualine.replace.c.bg = "NONE"
       transparent_lualine.insert.c.bg = "NONE"
@@ -97,7 +97,6 @@ return {
 
         colors = {
           bg = "NONE",
-
         },
 
         transparent_bg = true,
