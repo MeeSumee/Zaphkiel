@@ -84,11 +84,6 @@ return {
     colorscheme = { "dracula", "dracula-soft" },
     after = function()
       local dracula = require("dracula")
-      local transsexual = require('lualine.themes.auto')
-      transsexual.normal.c.bg = nil
-      transsexual.insert.c.bg = nil
-      transsexual.replace.c.bg = nil
-      require('lualine').setup { options = { theme = transsexual } }
       dracula.setup({
 
         transparent_bg = true,
