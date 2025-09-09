@@ -94,56 +94,50 @@ return {
         lualine_bg_color = "None",
         italic_comment = true,
         overrides = {
-          CursorLine = {
-            bg = "NONE",
-          },
           StatusLine = {
-            bg = "NONE",
+            bg = "None",
           },
           StatusLineTerm = {
-            bg = "NONE",
+            bg = "None",
           },
           Terminal = {
-            bg = "NONE",
+            bg = "None",
           },
           BlinkCmpScrollBarGutter = {
-            bg = "NONE",
+            bg = "None",
           },
           BufferLineFill = {
-            bg = "NONE",
+            bg = "None",
           },
           BufferTabpages = {
-            bg = "NONE",
+            bg = "None",
           },
           BufferTabpageFill = {
-            bg = "NONE",
+            bg = "None",
           },
           BufferInactive = {
-            bg = "NONE",
+            bg = "None",
           },
           BufferInactiveIndex = {
-            bg = "NONE",
+            bg = "None",
           },
           BufferInactiveMod = {
-            bg = "NONE",
+            bg = "None",
           },
           BufferInactiveSign = {
-            bg = "NONE",
+            bg = "None",
           },
           BufferInactiveTarget = {
-            bg = "NONE",
-          },
-          MiniFilesCursorLine = {
-            bg = "NONE",
+            bg = "None",
           },
           MiniStatuslineDevinfo = {
-            bg = "NONE"
+            bg = "None"
           },
           MiniStatuslineFilename = {
-            bg = "NONE"
+            bg = "None"
           },
           MiniStatuslineFileinfo = {
-            bg = "NONE"
+            bg = "None"
           },
         }
       })
