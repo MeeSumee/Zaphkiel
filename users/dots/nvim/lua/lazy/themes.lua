@@ -86,27 +86,18 @@ return {
       local dracula = require("dracula")
       dracula.setup({
 
-        colors = {
-          bg = "NONE",
-        },
-
         transparent_bg = true,
         lualine_bg_color = "None",
         italic_comment = true,
+
         overrides = {
-          StatusLine = {
-            bg = "None",
-          },
-          StatusLineTerm = {
-            bg = "None",
-          },
-          Terminal = {
-            bg = "None",
-          },
           BlinkCmpScrollBarGutter = {
             bg = "None",
           },
           BufferLineFill = {
+            bg = "None",
+          },
+          BufferLineBufferSelected = {
             bg = "None",
           },
           BufferTabpages = {
@@ -138,6 +129,21 @@ return {
           },
           MiniStatuslineFileinfo = {
             bg = "None"
+          },
+          StatusLine = {
+            bg = "None",
+          },
+          StatusLineTerm = {
+            bg = "None",
+          },
+          TabLineFill = {
+            bg = "None",
+          },
+          TelescopeNormal = {
+            bg = "None",
+          },
+          Terminal = {
+            bg = "None",
           },
         }
       })
