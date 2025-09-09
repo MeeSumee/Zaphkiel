@@ -84,15 +84,15 @@ return {
     colorscheme = { "dracula", "dracula-soft" },
     after = function()
       local dracula = require("dracula")
-      local lualine = require("lualine")
       dracula.setup({
 
         colors = {
           bg = "NONE",
+
         },
 
         transparent_bg = true,
-        lualine_bg_color = "#CC191724",
+        lualine_bg_color = "NONE",
         italic_comment = true,
         overrides = {
           StatusLine = {
@@ -104,28 +104,31 @@ return {
           Terminal = {
             bg = "NONE",
           },
-          WildMenu = {
+          BufferLineFill = {
             bg = "NONE",
           },
-          BufferLineFill = {
+          BufferTabpages = {
             bg = "NONE",
           },
           BufferTabpageFill = {
             bg = "NONE",
           },
+          BufferInactive = {
+            bg = "NONE",
+          },
+          BufferInactiveIndex = {
+            bg = "NONE",
+          },
+          BufferInactiveMod = {
+            bg = "NONE",
+          },
+          BufferInactiveSign = {
+            bg = "NONE",
+          },
+          BufferInactiveTarget = {
+            bg = "NONE",
+          },
         }
-      })
-
-      lualine.setup({
-        normal = {
-          c = { fg = colors.white, bg = "NONE" },
-        },
-        replace = {
-          c = { fg = colors.white, bg = "NONE" }
-        },
-        insert = {
-          c = { fg = colors.white, bg = "NONE" }
-        },
       })
     end
   }
