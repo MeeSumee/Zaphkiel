@@ -84,6 +84,15 @@ return {
     colorscheme = { "dracula", "dracula-soft" },
     after = function()
       local dracula = require("dracula")
+      local transparent_lualine = require("lualine.themes.dracula" or "lualine.themes.dracula-soft")
+      transparent_lualine.normal.c.bg = "NONE"
+      transparent_lualine.replace.c.bg = "NONE"
+      transparent_lualine.insert.c.bg = "NONE"
+      require("lualine").setup {
+        options = {
+          theme = "transparent_lualine"
+        }
+      }
       dracula.setup({
 
         colors = {
