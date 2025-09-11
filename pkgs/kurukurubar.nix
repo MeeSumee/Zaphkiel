@@ -2,12 +2,12 @@
 # cc6d5cf12ae824e6945cc2599a2650d5fe054ffe
 {
   lib,
+  stdenvNoCC,
   scripts,
   rembg,
   librebarcode,
   symlinkJoin,
   makeWrapper,
-  runCommandLocal,
   quickshell,
   kdePackages,
   material-symbols,
@@ -15,11 +15,11 @@
   nerd-fonts,
   configPath ? ../users/dots/quickshell/kurukurubar,
   asGreeter ? false,
-  # MUST BE A QML FILE
-  # replaces Data/Colors.qml
+  # a json file
   customColors ? null,
 }: let
-  inherit (lib) makeSearchPath optionalString cleanSourceWith cleanSource hasSuffix;
+  inherit (lib) makeSearchPath optionalString any;
+
   qmlPath = makeSearchPath "lib/qt-6/qml" [
     kdePackages.qtbase
     kdePackages.qtdeclarative
@@ -35,24 +35,35 @@
     ];
   };
 
-  qsConfig' = runCommandLocal "quick" {} (''
-      mkdir $out
-      cd $out
-      cp -rp ${configPath}/* .
-    ''
-    + (optionalString asGreeter ''
-      chmod u+w *.qml
+  qsConfig' = let
+    inherit (lib.fileset) unions toSource fileFilter;
+    root = configPath;
+    qmlFileFilter = fileFilter (file: any file.hasExt ["qml"]);
+  in
+    toSource {
+      inherit root;
+      fileset = unions [
+        (qmlFileFilter root)
+        (root + /Assets)
+        (root + /scripts)
+      ];
+    };
+
+  qsConfig = stdenvNoCC.mkDerivation {
+    name = "kuruconf";
+    src = qsConfig';
+
+    installPhase = ''
+      runHook preInstall
+
+      mkdir -p $out
+      cp -r ./. $out
+    '';
+
+    preInstall = optionalString asGreeter ''
       rm shell.qml
       mv greeter.qml shell.qml
-    '')
-    + (optionalString (customColors != null) ''
-      chmod u+rw ./Data/Colors.qml
-      cp ${customColors} ./Data/Colors.qml
-    ''));
-
-  qsConfig = cleanSourceWith {
-    src = cleanSource qsConfig';
-    filter = fname: _ftype: !(hasSuffix "nix" fname || hasSuffix "md" fname);
+    '';
   };
 in
   symlinkJoin {
@@ -66,6 +77,7 @@ in
       makeWrapper $out/bin/quickshell $out/bin/kurukurubar \
         --set FONTCONFIG_FILE "${fontconfig}" \
         --set QML2_IMPORT_PATH "${qmlPath}" \
+        --set KURU_COLORS "${optionalString (customColors != null) "${customColors}"}" \
         --add-flags '-p ${qsConfig}' \
         --prefix PATH : "$out/bin"
     '';

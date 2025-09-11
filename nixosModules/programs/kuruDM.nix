@@ -1,4 +1,5 @@
 {
+  mein,
   pkgs,
   lib,
   config,
@@ -11,15 +12,16 @@
   uwuToHypr = pkgs.runCommandLocal "quick" {} ''
     awk '/^export/ { split($2, ARR, "="); print "env = "ARR[1]","ARR[2]}' ${../../users/dots/uwsm/env} > $out
   '';
-  inherit (config.programs.matugen) wallpaper theme;
+  inherit (config.zaphkiel.data) wallpaper;
 in {
   options.zaphkiel.programs.kuruDM.enable = mkEnableOption "kurukuruDM";
   config = mkIf config.zaphkiel.programs.kuruDM.enable {
     programs.kurukuruDM = {
+      package = mein.${pkgs.system}.kurukurubar-unstable;
       enable = true;
       settings = {
         inherit wallpaper;
-        colorsQML = theme.files + "/quickshell-colors.qml";
+        colors = ../../users/dots/quickshell/colors.json;
         instantAuth = true;
         extraConfig = ''
           monitor = eDP-1, preferred, auto, 1.25

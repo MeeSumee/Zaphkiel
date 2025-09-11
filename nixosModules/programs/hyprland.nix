@@ -1,21 +1,15 @@
 {
+  mein,
   pkgs,
   lib,
   config,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf mkForce attrValues mkAfter;
+  inherit (lib) mkEnableOption mkIf mkForce attrValues;
+  zpkgs = mein.${pkgs.system};
 in {
   options.zaphkiel.programs.hyprland.enable = mkEnableOption "hyprland";
   config = mkIf config.zaphkiel.programs.hyprland.enable {
-    # won't work as intended without mkAfter
-    nixpkgs.overlays = mkAfter [
-      (final: prev: {
-        kurukurubar-unstable = prev.kurukurubar-unstable.override {
-          customColors = config.programs.matugen.theme.files + "/quickshell-colors.qml";
-        };
-      })
-    ];
     programs.hyprland = {
       enable = true;
       withUWSM = true;
@@ -23,7 +17,8 @@ in {
     services.hypridle.enable = true;
     systemd.user.services.hypridle.path = mkForce (attrValues {
       inherit (config.programs.hyprland) package;
-      inherit (pkgs) systemd procps brightnessctl kurukurubar-unstable;
+      inherit (pkgs) systemd procps brightnessctl;
+      inherit (zpkgs) kurukurubar-unstable;
     });
 
     qt.enable = true;
@@ -48,8 +43,8 @@ in {
     # dependencies .w.
     environment.systemPackages = attrValues {
       # internal overlay
-      inherit (pkgs) kokCursor kurukurubar-unstable stash;
-      inherit (pkgs.scripts) kde-send gpurecording cowask npins-show;
+      inherit (zpkgs) kokCursor kurukurubar-unstable stash;
+      inherit (zpkgs.scripts) kde-send gpurecording cowask npins-show;
       # Themes
       inherit (pkgs) rose-pine-icon-theme rose-pine-gtk-theme;
       inherit (pkgs.kdePackages) qt6ct breeze;
