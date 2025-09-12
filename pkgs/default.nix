@@ -1,5 +1,6 @@
 {
   pkgs,
+  system,
   lib,
   inputs,
   sources,
@@ -7,13 +8,13 @@
 }:
 lib.fix (self: let
   inherit (lib) warn;
-  inherit (pkgs) system callPackage;
+  inherit (pkgs) callPackage;
 in {
   # kurukuru
   quickshell = import ./quickshell.nix {
     inherit (inputs.quickshell) rev;
     inherit
-      (inputs.quickshell.packages.${pkgs.system})
+      (inputs.quickshell.packages.${system})
       quickshell
       ;
   };
@@ -44,5 +45,5 @@ in {
   # JUST SO YOU KNOW `nivxvim` WAS JUST WHAT I USED TO CALL MY nvim alright
   # I had ditched the nixvim project long long long ago but the name just stuck
   nixvim-minimal = warn "Zahpkiel: `nixvim-minimal` depricated, please use `xvim.minimal` instead" self.xvim.minimal;
-  nixvim = warn "Zahpkiel: `nixvim` depricated please use xvim.default instead" self.xvim.default;
+  nixvim = warn "Zahpkiel: `nixvim` depricated please use `xvim.default` instead" self.xvim.default;
 })

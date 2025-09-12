@@ -3,13 +3,14 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    systems.url = "github:nix-systems/default";
+    systems.url = "github:nix-systems/x86_64-linux";
     crane.url = "github:ipetkov/crane";
     mnw.url = "github:Gerg-L/mnw";
     hjem-impure.url = "github:Rexcrazy804/hjem-impure";
     hjem = {
       url = "github:feel-co/hjem";
       inputs.smfh.follows = "";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     quickshell = {
       url = "github:Rexcrazy804/quickshell?ref=overridable-qs-unwrapped";
@@ -22,27 +23,34 @@
     };
     agenix = {
       url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.darwin.follows = "";
       inputs.home-manager.follows = "";
       inputs.systems.follows = "systems";
     };
   };
 
-  outputs = inputs: let
-    inherit (inputs) nixpkgs self;
-    inherit (nixpkgs) lib;
+  outputs = {
+    self,
+    nixpkgs,
+    systems,
+    ...
+  } @ inputs: let
+    inherit (nixpkgs.lib) getAttrs mapAttrs;
 
-    systems = import inputs.systems;
+    pkgsFor = getAttrs (import systems) nixpkgs.legacyPackages;
     sources = import ./npins;
-    moduleArgs = {inherit inputs self lib sources;};
+    moduleArgs = {
+      inherit inputs self sources;
+      inherit (nixpkgs) lib;
+    };
 
+    eachSystem = fn: mapAttrs fn pkgsFor;
     callModule = path: attrs: import path (moduleArgs // attrs);
-    pkgsFor = system: nixpkgs.legacyPackages.${system};
-    eachSystem = fn: lib.genAttrs systems (system: fn (pkgsFor system));
   in {
-    formatter = eachSystem (pkgs: self.packages.${pkgs.system}.irminsul);
-    packages = eachSystem (pkgs: callModule ./pkgs {inherit pkgs;});
-    devShells = eachSystem (pkgs: callModule ./devShells {inherit pkgs;});
+    formatter = eachSystem (system: _: self.packages.${system}.irminsul);
+    packages = eachSystem (system: pkgs: callModule ./pkgs {inherit system pkgs;});
+    devShells = eachSystem (system: pkgs: callModule ./devShells {inherit system pkgs;});
     nixosConfigurations = callModule ./hosts {};
     templates = callModule ./templates {};
     nixosModules = callModule ./nixosModules/exported {};
