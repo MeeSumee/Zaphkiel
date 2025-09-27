@@ -56,7 +56,7 @@ return {
     require("fzf-lua").setup({
       actions = { files = { ["enter"] = FzfLua.actions.file_edit } },
       fzf_colors = {
-        ["bg"] = { "bg", nil },
+        ["bg"] = "-1",
       },
     })
   end,
