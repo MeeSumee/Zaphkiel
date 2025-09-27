@@ -89,7 +89,7 @@ return {
       local dracula = require("dracula")
       dracula.setup({
         transparent_bg = true,
-        lualine_bg_color = "-1",
+        lualine_bg_color = "gold",
         italic_comment = true,
         overrides = {
         }
