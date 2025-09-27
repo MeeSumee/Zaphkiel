@@ -92,60 +92,6 @@ return {
         lualine_bg_color = nil,
         italic_comment = true,
         overrides = {
-          BlinkCmpScrollBarGutter = {
-            bg = nil,
-          },
-          BufferLineFill = {
-            bg = nil,
-          },
-          BufferLineBufferSelected = {
-            bg = nil,
-          },
-          BufferTabpages = {
-            bg = nil,
-          },
-          BufferTabpageFill = {
-            bg = nil,
-          },
-          BufferInactive = {
-            bg = nil,
-          },
-          BufferInactiveIndex = {
-            bg = nil,
-          },
-          BufferInactiveMod = {
-            bg = nil,
-          },
-          BufferInactiveSign = {
-            bg = nil,
-          },
-          BufferInactiveTarget = {
-            bg = nil,
-          },
-          MiniStatuslineDevinfo = {
-            bg = nil
-          },
-          MiniStatuslineFilename = {
-            bg = nil
-          },
-          MiniStatuslineFileinfo = {
-            bg = nil
-          },
-          StatusLine = {
-            bg = nil,
-          },
-          StatusLineTerm = {
-            bg = nil,
-          },
-          TabLineFill = {
-            bg = nil,
-          },
-          TelescopeNormal = {
-            bg = nil,
-          },
-          Terminal = {
-            bg = nil,
-          },
         }
       })
     end,
