@@ -55,9 +55,8 @@ return {
   after = function()
     require("fzf-lua").setup({
       actions = { files = { ["enter"] = FzfLua.actions.file_edit } },
-      fzf_colors = {
-        ["bg"] = "-1",
-      },
+      -- Force background color on ALL themes cause this is the easiest fix ever
+      fzf_colors = { ["bg"] = "-1" },
     })
   end,
 }

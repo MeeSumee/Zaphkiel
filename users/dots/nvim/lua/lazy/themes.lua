@@ -83,16 +83,32 @@ return {
     end,
   },
   {
-    "dracula.nvim",
-    colorscheme = { "dracula", "dracula-soft" },
+    "tokyonight.nvim",
+    colorscheme = {
+      "tokyonight",
+      "tokyonight-night",
+      "tokyonight-storm",
+      "tokyonight-day",
+      "tokyonight-moon",
+    },
     after = function()
-      local dracula = require("dracula")
-      dracula.setup({
-        transparent_bg = true,
-        lualine_bg_color = "gold",
-        italic_comment = true,
-        overrides = {
-        }
+      require("tokyonight").setup({
+        -- TRANSPARENCY
+        transparent = true,
+        lualine_bold = true,
+
+        -- FZF-Lua Content Preview & Neotree transparency
+        styles = { sidebars = "transparent", floats = "transparent" },
+
+        -- Lualine transparency
+        on_colors = function(colors) colors.bg_statusline = nil end,
+
+        on_highlights = function(hl, c)
+          -- Make top line and column line transparent
+          hl.ColorColumn = { bg = c.none }
+          hl.TabLineFill = { bg = c.none }
+        end,
+
       })
     end,
   },
